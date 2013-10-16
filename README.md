@@ -1,4 +1,5 @@
-# ConfigCentral #
+ConfigCentral
+=============
 ConfigCentral is an experiment in building a centralized configuration service, based on recommendations provided in Jez Humble & Dave Farley's book, Continuous Delivery (pp 44-46).
 
 ## The Technologies ##
