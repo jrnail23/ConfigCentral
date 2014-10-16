@@ -3,7 +3,7 @@ ConfigCentral
 ConfigCentral is an experiment in building a centralized configuration service, based on recommendations provided in Jez Humble & Dave Farley's book, Continuous Delivery (pp 44-46).
 
 ## The Technologies ##
-So far I'm thinking I'll start out with a RESTful API, and some kind of NoSQL database.  I'm not sure whether a document-centric DB or a key-value store will fit this best, so that's an area of exploration.
+So far I'm thinking I'll start out with a RESTful API, and some kind of NoSQL database.  I'm not sure whether a document-centric DB or a key-value store will fit this best, so that's an area of exploration.  It could even end up using git as a database, which would get us versioning for free.
 
 ## The Model ##
 Humble & Farley recommend a model consisting of a set of tuples for each configuration property, depending on three things:
@@ -37,7 +37,7 @@ They also provide the following use cases to consider when modeling configuratio
 - [Have we ESCaped Continuous Delivery, by Chris Read](http://blog.chris-read.net/2010/10/07/have-we-escaped-continuous-delivery/)
 - [ESCape Google Code site](https://code.google.com/p/escservesconfig/)
 - [5 Configuration Management Best Practices, by Chris Read](http://www.infoq.com/articles/5-config-mgmt-best-practices)
-- [Environment-aware Configuration with DNS-based Environment Determination, by Andrei Volkov](http://zvolkov.com/clog/2010/06/18?s=DNS+based+Environment+Determination)
+- [Environment-aware Configuration with DNS-based Environment Determination, by Andrei Volkov](http://www.zvolkov.com/clog/2010/06/18/environment-aware-configuration-with-dns-based-environment-determination/)
 
 
 
