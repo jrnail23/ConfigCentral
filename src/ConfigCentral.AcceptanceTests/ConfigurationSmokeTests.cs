@@ -12,9 +12,11 @@ namespace ConfigCentral.AcceptanceTests
         {
             using (var server = TestServer.Create<WebPipeline>())
             {
-                var response = server.HttpClient.GetAsync("/api/configs/myapp/v1.1/test6").Result;
+                var response = server.HttpClient.GetAsync("/api/configs/myapp/v1.1/test6")
+                    .Result;
 
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
+                response.StatusCode.Should()
+                    .Be(HttpStatusCode.OK);
             }
         }
     }
