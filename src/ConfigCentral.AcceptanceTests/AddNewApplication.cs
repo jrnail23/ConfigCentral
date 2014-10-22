@@ -1,4 +1,4 @@
-using Microsoft.Owin.Testing;
+using System;
 using NUnit.Framework;
 using TestStack.BDDfy;
 
@@ -7,27 +7,36 @@ namespace ConfigCentral.AcceptanceTests
     [TestFixture]
     [Story(AsA = "As an application developer", IWant = "I want to add a new application to ConfigCentral",
         SoThat = "So that I can begin managing its configuration data")]
-    public class AddNewApplication
+    public class AddNewApplication : ApiAcceptanceTestBase
     {
-        [SetUp]
-        public void SetUpTestServer()
+        [Test]
+        public void NewApplication()
         {
-            _server = TestServer.Create<WebPipeline>();
+            throw new NotImplementedException();
         }
 
-        [TearDown]
-        public void TearDownTestServer()
+        [Test]
+        public void ApplicationHasAlreadyBeenAdded()
         {
-            _server.Dispose();
-            _server = null;
+            throw new NotImplementedException();
+        }
+    }
+
+    [TestFixture]
+    [Story(AsA = "As a team lead", IWant = "I want to add my organization to ConfigCentral",
+        SoThat = "So that I can begin managing my applications' configuration data")]
+    public class AddNewOrganization : ApiAcceptanceTestBase
+    {
+        [Test]
+        public void NewAOrganization()
+        {
+            throw new NotImplementedException();
         }
 
-        TestServer _server;
-
         [Test]
-        public void ApplicationHasAlreadyBeenAdded() {}
-
-        [Test]
-        public void NewApplication() {}
+        public void OrganizationHasAlreadyBeenAdded()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

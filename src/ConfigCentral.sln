@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral.AcceptanceTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral", "ConfigCentral\ConfigCentral.csproj", "{E95C7C49-9734-460D-9567-410B139B0D55}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ConfigCentral.Modeling", "ConfigCentral.Modeling\ConfigCentral.Modeling.modelproj", "{C79CF536-0B89-49D9-A135-C581DC32B7C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E95C7C49-9734-460D-9567-410B139B0D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E95C7C49-9734-460D-9567-410B139B0D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E95C7C49-9734-460D-9567-410B139B0D55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C79CF536-0B89-49D9-A135-C581DC32B7C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C79CF536-0B89-49D9-A135-C581DC32B7C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C79CF536-0B89-49D9-A135-C581DC32B7C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C79CF536-0B89-49D9-A135-C581DC32B7C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

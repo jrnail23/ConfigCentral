@@ -4,6 +4,7 @@ namespace ConfigCentral.Domain
 {
     public interface IConfigurationStore
     {
-        IDictionary<string, string> GetConfigurationData(string application, string appVersion, string environmentName);
+        IEnumerable<KeyValuePair<string, string>> GetConfigPairs(string environmentName);
+        void Persist(string environmentName, IEnumerable<KeyValuePair<string, string>> valuePairs);
     }
 }

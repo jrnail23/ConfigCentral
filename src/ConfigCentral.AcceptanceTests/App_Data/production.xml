@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Parameters>
+  <Parameter key="parameter1" value="production.value1" />
+  <Parameter key="parameter2" value="production.value2" />
+</Parameters>

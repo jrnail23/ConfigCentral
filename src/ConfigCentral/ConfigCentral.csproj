@@ -84,10 +84,16 @@
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="-\CodeAnnotationAttributes.cs" />
     <Compile Include="-\Contract.cs" />
+    <Compile Include="DataAccess\Configuration.cs" />
+    <Compile Include="DataAccess\ConfigurationIdentifier.cs" />
+    <Compile Include="DataAccess\ConfigurationRepository.cs" />
+    <Compile Include="DataAccess\IConfigurationRepository.cs" />
+    <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\IConfigurationStore.cs" />
     <Compile Include="DataAccess\XmlFileBasedConfigurationStore.cs" />
     <Compile Include="ConfigCentralApplication.cs" />
     <Compile Include="Domain\HashCodeHelper.cs" />
+    <Compile Include="Domain\Model\Identifier.cs" />
     <Compile Include="Domain\ValueObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +102,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="Domain\Model\DomainModel.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
