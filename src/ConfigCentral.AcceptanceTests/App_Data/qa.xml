@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Parameters>
-  <Parameter key="parameter1" value="qa.value1" />
-  <Parameter key="parameter2" value="qa.value2" />
-</Parameters>
