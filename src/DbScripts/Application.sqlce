@@ -1,0 +1,10 @@
+-- Script Date: 10/27/2014 11:38 PM  - ErikEJ.SqlCeScripting version 3.5.2.40
+CREATE TABLE [Application] (
+  [Id] uniqueidentifier NOT NULL, 
+  [Name] nvarchar(50) NOT NULL, 
+  [Version] int NOT NULL, 
+  [CreatedOn] datetime DEFAULT GETDATE() NOT NULL
+);
+GO
+ALTER TABLE [Application] ADD CONSTRAINT [PK_Application] PRIMARY KEY ([Id]);
+GO

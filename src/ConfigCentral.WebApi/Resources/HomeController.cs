@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace ConfigCentral.WebApi
+namespace ConfigCentral.WebApi.Resources
 {
     public class HomeController : ApiController
     {
