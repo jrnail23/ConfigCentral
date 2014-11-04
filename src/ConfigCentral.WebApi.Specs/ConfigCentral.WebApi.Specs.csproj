@@ -74,7 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiAcceptanceTestBase.cs" />
-    <Compile Include="RegisterAnApplication.cs" />
+    <Compile Include="ApplicationFeature\ApplicationFixture.cs" />
+    <Compile Include="ApplicationFeature\GetApplicationByName.cs" />
+    <Compile Include="ApplicationFeature\RegisterAnApplication.cs" />
     <Compile Include="ContentExtensions.cs" />
     <Compile Include="HomeSmokeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +87,10 @@
     <None Include="Scenarios.md" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConfigCentral.DomainModel\ConfigCentral.DomainModel.csproj">
+      <Project>{1E217317-B098-4FA6-BB1E-945CB3D39301}</Project>
+      <Name>ConfigCentral.DomainModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConfigCentral.WebApi\ConfigCentral.WebApi.csproj">
       <Project>{20A7B2FF-C94B-471D-B3C9-E12143AC2841}</Project>
       <Name>ConfigCentral.WebApi</Name>

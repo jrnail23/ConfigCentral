@@ -1,8 +1,8 @@
 properties {
   $solution_file = ".\src\ConfigCentral.sln"
   $delivery_directory = "C:\ProgramData\ConfigCentral"
-  $service_exe = 'ConfigCentral.WebApi.exe'
-  $bin_folder = '.\src\ConfigCentral.WebApi\bin\Release'
+  $service_exe = 'ConfigCentral.WebApi.TopShelfHost.exe'
+  $bin_folder = '.\src\ConfigCentral.WebApi.TopShelfHost\bin\Release'
   $api_home_url = 'http://localhost:5001'
 }
 
@@ -14,16 +14,16 @@ task build {
 
 task deploy -depends build {
   
-  $executable = join-path $delivery_directory $service_exe
-  
+  $exe_path = join-path $delivery_directory $service_exe
+
   if (test-path $delivery_directory) {
-    exec { & $executable uninstall }
+    exec { & $exe_path uninstall }
     rd $delivery_directory -rec -force  
   }
   
   copy-item $bin_folder $delivery_directory -force -recurse -verbose
-
-  exec { & $executable install start }
+    
+  exec { & $exe_path install start }
 }
 
 task smokeTest -depends deploy {

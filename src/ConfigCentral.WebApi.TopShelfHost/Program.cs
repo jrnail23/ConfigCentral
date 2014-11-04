@@ -1,7 +1,6 @@
-﻿using System.Dynamic;
-using Topshelf;
+﻿using Topshelf;
 
-namespace ConfigCentral.WebApi
+namespace ConfigCentral.WebApi.TopShelfHost
 {
     internal class Program
     {
