@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1E217317-B098-4FA6-BB1E-945CB3D39301}</ProjectGuid>
+    <ProjectGuid>{696400EB-E050-4DE9-90BA-D708FD51464F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConfigCentral.DomainModel</RootNamespace>
-    <AssemblyName>ConfigCentral.DomainModel</AssemblyName>
+    <RootNamespace>ConfigCentral.Infrastructure</RootNamespace>
+    <AssemblyName>ConfigCentral.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.3</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,10 +34,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
-    <Compile Include="IApplicationRepository.cs" />
-    <Compile Include="ObjectNotFoundException.cs" />
+    <Compile Include="InMemoryApplicationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConfigCentral.DomainModel\ConfigCentral.DomainModel.csproj">
+      <Project>{1E217317-B098-4FA6-BB1E-945CB3D39301}</Project>
+      <Name>ConfigCentral.DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

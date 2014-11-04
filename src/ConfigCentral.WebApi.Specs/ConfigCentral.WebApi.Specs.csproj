@@ -91,6 +91,10 @@
       <Project>{1E217317-B098-4FA6-BB1E-945CB3D39301}</Project>
       <Name>ConfigCentral.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ConfigCentral.Infrastructure\ConfigCentral.Infrastructure.csproj">
+      <Project>{696400EB-E050-4DE9-90BA-D708FD51464F}</Project>
+      <Name>ConfigCentral.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConfigCentral.WebApi\ConfigCentral.WebApi.csproj">
       <Project>{20A7B2FF-C94B-471D-B3C9-E12143AC2841}</Project>
       <Name>ConfigCentral.WebApi</Name>

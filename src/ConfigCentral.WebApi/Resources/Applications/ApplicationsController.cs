@@ -4,16 +4,17 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using ConfigCentral.DomainModel;
+using ConfigCentral.Infrastructure;
 
 namespace ConfigCentral.WebApi.Resources.Applications
 {
     public class ApplicationsController : ApiController
     {
-        private readonly ApplicationsStore _appsStore;
+        private readonly IApplicationRepository _appsStore;
 
-        public ApplicationsController() : this(new ApplicationsStore()) {}
+        public ApplicationsController() : this(new InMemoryApplicationRepository()) {}
 
-        public ApplicationsController(ApplicationsStore appsStore)
+        public ApplicationsController(IApplicationRepository appsStore)
         {
             _appsStore = appsStore;
         }

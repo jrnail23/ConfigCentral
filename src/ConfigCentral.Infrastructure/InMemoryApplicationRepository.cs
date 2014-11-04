@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConfigCentral.DomainModel;
 
-namespace ConfigCentral.DomainModel
+namespace ConfigCentral.Infrastructure
 {
-    public class ApplicationsStore
+    public class InMemoryApplicationRepository : IApplicationRepository
     {
         public static readonly ISet<Application> AppsDataStore = new HashSet<Application>();
 

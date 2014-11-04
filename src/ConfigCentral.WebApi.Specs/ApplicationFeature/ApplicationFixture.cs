@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using ConfigCentral.DomainModel;
+using ConfigCentral.Infrastructure;
 using FluentAssertions;
 
 namespace ConfigCentral.WebApi.Specs.ApplicationFeature
@@ -20,12 +21,12 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
 
         public void MyApplicationIsNotYetRegistered(string applicationName)
         {
-            ApplicationsStore.AppsDataStore.Clear();
+            InMemoryApplicationRepository.AppsDataStore.Clear();
         }
 
         public void MyApplicationHasAlreadyBeenRegistered(string applicationName)
         {
-            ApplicationsStore.AppsDataStore.Add(new Application(applicationName));
+            InMemoryApplicationRepository.AppsDataStore.Add(new Application(applicationName));
         }
 
         public void IRegisterMyApplicationViaPost(Uri uri, string applicationName)

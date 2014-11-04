@@ -88,6 +88,10 @@
       <Project>{1E217317-B098-4FA6-BB1E-945CB3D39301}</Project>
       <Name>ConfigCentral.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ConfigCentral.Infrastructure\ConfigCentral.Infrastructure.csproj">
+      <Project>{696400EB-E050-4DE9-90BA-D708FD51464F}</Project>
+      <Name>ConfigCentral.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ConfigCentral.sdf">
