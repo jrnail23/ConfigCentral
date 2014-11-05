@@ -4,15 +4,12 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using ConfigCentral.DomainModel;
-using ConfigCentral.Infrastructure;
 
 namespace ConfigCentral.WebApi.Resources.Applications
 {
     public class ApplicationsController : ApiController
     {
         private readonly IApplicationRepository _appsStore;
-
-        public ApplicationsController() : this(new InMemoryApplicationRepository()) {}
 
         public ApplicationsController(IApplicationRepository appsStore)
         {
@@ -31,7 +28,6 @@ namespace ConfigCentral.WebApi.Resources.Applications
             {
                 return NotFound();
             }
-            
         }
 
         [Route("applications")]
@@ -46,7 +42,6 @@ namespace ConfigCentral.WebApi.Resources.Applications
             {
                 return NotFound();
             }
-
         }
 
         [Route("applications")]
