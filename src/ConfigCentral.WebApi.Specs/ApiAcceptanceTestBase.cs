@@ -1,3 +1,7 @@
+using System;
+using System.IO;
+using Autofac;
+using ConfigCentral.Infrastructure;
 using Microsoft.Owin.Testing;
 using NUnit.Framework;
 
@@ -5,10 +9,16 @@ namespace ConfigCentral.WebApi.Specs
 {
     public abstract class ApiAcceptanceTestBase
     {
+        protected TestServer Server;
+        protected IContainer RootContainer { get; private set; }
+
         [SetUp]
         public void SetUpTestServer()
         {
-            Server = TestServer.Create<WebPipeline>();
+            RootContainer = new CompositionRoot().Compose();
+
+            Server = TestServer.Create(app => new WebPipeline(RootContainer).Configuration(app));
+            SetUpTestSpecificDatabase();
         }
 
         [TearDown]
@@ -18,6 +28,18 @@ namespace ConfigCentral.WebApi.Specs
             Server = null;
         }
 
-        protected TestServer Server;
+        private void SetUpTestSpecificDatabase()
+        {
+            var dbTemplateFilePath = @"App_Data\ConfigCentral.sdf";
+            var testSpecificDbFilePath = string.Format(@"App_Data\ConfigCentral_{0}.sdf", Guid.NewGuid());
+            File.Copy(dbTemplateFilePath, testSpecificDbFilePath);
+
+            var connectionString = string.Format("Data Source={0};", testSpecificDbFilePath);
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(new NHibernateConfiguration(connectionString))
+                .SingleInstance();
+
+            builder.Update(RootContainer);
+        }
     }
 }

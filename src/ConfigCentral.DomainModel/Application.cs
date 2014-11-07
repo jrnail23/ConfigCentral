@@ -4,22 +4,35 @@ namespace ConfigCentral.DomainModel
 {
     public class Application : IEquatable<Application>
     {
+        private readonly Guid _id;
         private readonly string _name;
+        private int _version = 0;
 
-        public Application(string name)
+        [Obsolete("Do not use - only here to support tooling", error: true)]
+        protected Application() {}
+        public Application(Guid id, string name)
         {
             if (name == null) throw new ArgumentNullException("name");
             if (name == string.Empty) throw new ArgumentException("value must not be empty", "name");
 
+            _id = id;
             _name = name;
         }
 
-        public string Name
+        public virtual string Name
         {
             get { return _name; }
         }
+        public virtual int Version
+        {
+            get { return _version; }
+        }
+        public virtual Guid Id
+        {
+            get { return _id; }
+        }
 
-        public bool Equals(Application other)
+        public virtual bool Equals(Application other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;

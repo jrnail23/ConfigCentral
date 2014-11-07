@@ -10,19 +10,22 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
         SoThat = "So that I can begin managing its configuration data")]
     public class RegisterAnApplication : ApiAcceptanceTestBase
     {
-        public ApplicationFixture ApplicationFixture { get; set; }
-
         [SetUp]
         public void SetUpApplicationFixture()
         {
-            ApplicationFixture = new ApplicationFixture(Server.HttpClient);
+            ApplicationFixture = new ApplicationFixture(Server.HttpClient, RootContainer);
         }
+
+        public ApplicationFixture ApplicationFixture { get; set; }
 
         [Test]
         public void ApplicationHasAlreadyBeenAdded()
         {
             this.Given(_ => _.ApplicationFixture.MyApplicationHasAlreadyBeenRegistered("MyApplication"))
-                .When(_ => _.ApplicationFixture.IRegisterMyApplicationViaPost(new Uri("/applications", UriKind.Relative), "MyApplication"))
+                .When(
+                    _ =>
+                        _.ApplicationFixture.IRegisterMyApplicationViaPost(new Uri("/applications", UriKind.Relative),
+                            "MyApplication"))
                 .Then(_ => _.ApplicationFixture.TheResponseStatusCodeShouldBe(HttpStatusCode.Conflict))
                 .And(
                     _ =>
@@ -39,7 +42,10 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
         public void NewApplication()
         {
             this.Given(_ => _.ApplicationFixture.MyApplicationIsNotYetRegistered("MyApplication"))
-                .When(_ => _.ApplicationFixture.IRegisterMyApplicationViaPost(new Uri("/applications", UriKind.Relative), "MyApplication"))
+                .When(
+                    _ =>
+                        _.ApplicationFixture.IRegisterMyApplicationViaPost(new Uri("/applications", UriKind.Relative),
+                            "MyApplication"))
                 .Then(_ => _.ApplicationFixture.TheResponseStatusCodeShouldBe(HttpStatusCode.Created))
                 .And(
                     _ =>

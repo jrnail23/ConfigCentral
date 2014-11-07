@@ -47,15 +47,15 @@ namespace ConfigCentral.WebApi.Resources.Applications
         [Route("applications")]
         public IHttpActionResult Post([FromBody] ApplicationState application)
         {
-            var appEntity = new Application(application.Name);
+            var appEntity = new Application(Guid.NewGuid(), application.Name);
 
             try
             {
                 _appsStore.Add(appEntity);
             }
-            catch (Exception e)
+            catch (DuplicateObjectException e)
             {
-                // TODO: refactor to a strongly typed exception, extract response mapping into an exception filter or something
+                // TODO: extract response mapping into an exception filter or something
                 var entity = new
                 {
                     ErrorDescription = e.Message
@@ -70,8 +70,7 @@ namespace ConfigCentral.WebApi.Resources.Applications
             }
 
             return Created(new Uri("/applications/" + application.Name, UriKind.Relative),
-                new
-                {});
+                new { });
         }
     }
 }

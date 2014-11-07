@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="DuplicateObjectException.cs" />
     <Compile Include="IApplicationRepository.cs" />
     <Compile Include="ObjectNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

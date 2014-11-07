@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ConfigCentral.DomainModel;
+using ObjectNotFoundException = ConfigCentral.DomainModel.ObjectNotFoundException;
 
 namespace ConfigCentral.Infrastructure
 {

@@ -1,10 +1,18 @@
 using System.Web.Http;
+using Autofac;
 using Owin;
 
 namespace ConfigCentral.WebApi
 {
     public class WebPipeline
     {
+        private readonly ILifetimeScope _rootLifetimeScope;
+
+        public WebPipeline(ILifetimeScope rootLifetimeScope)
+        {
+            _rootLifetimeScope = rootLifetimeScope;
+        }
+
         public void Configuration(IAppBuilder application)
         {
             var config = new HttpConfiguration();
@@ -12,10 +20,11 @@ namespace ConfigCentral.WebApi
             config.MapHttpAttributeRoutes();
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
 
-            var rootContainerScope = new CompositionRoot().Compose();
-            application.UseAutofacMiddleware(rootContainerScope);
+            application.UseAutofacMiddleware(_rootLifetimeScope);
             application.UseAutofacWebApi(config);
             application.UseWebApi(config);
         }
+
+
     }
 }
