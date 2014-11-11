@@ -5,7 +5,7 @@ using ConfigCentral.Infrastructure;
 using NHibernate;
 using Configuration = NHibernate.Cfg.Configuration;
 
-namespace ConfigCentral.WebApi
+namespace ConfigCentral.DataAccess.NHibernate
 {
     public class NHibernateModule : Module
     {

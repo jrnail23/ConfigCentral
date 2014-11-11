@@ -3,7 +3,7 @@ using ConfigCentral.DomainModel;
 using NHibernate;
 using ObjectNotFoundException = ConfigCentral.DomainModel.ObjectNotFoundException;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.DataAccess.NHibernate
 {
     public class NHibernateApplicationRepository : IApplicationRepository
     {

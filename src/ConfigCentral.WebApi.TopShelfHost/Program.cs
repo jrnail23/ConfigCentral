@@ -1,4 +1,5 @@
 ﻿using Autofac.Integration.WebApi;
+using ConfigCentral.WebApi.Owin;
 using Topshelf;
 
 namespace ConfigCentral.WebApi.TopShelfHost

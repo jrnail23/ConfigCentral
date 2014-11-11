@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Autofac;
+using ConfigCentral.DataAccess.NHibernate;
 using ConfigCentral.DomainModel;
 using ConfigCentral.Infrastructure;
 using FluentAssertions;

@@ -103,6 +103,10 @@
     <None Include="Scenarios.md" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConfigCentral.DataAccess.NHibernate\ConfigCentral.DataAccess.NHibernate.csproj">
+      <Project>{87414B89-5C15-4D43-94B3-D97257C05CFF}</Project>
+      <Name>ConfigCentral.DataAccess.NHibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConfigCentral.DomainModel\ConfigCentral.DomainModel.csproj">
       <Project>{1E217317-B098-4FA6-BB1E-945CB3D39301}</Project>
       <Name>ConfigCentral.DomainModel</Name>
@@ -110,6 +114,10 @@
     <ProjectReference Include="..\ConfigCentral.Infrastructure\ConfigCentral.Infrastructure.csproj">
       <Project>{696400EB-E050-4DE9-90BA-D708FD51464F}</Project>
       <Name>ConfigCentral.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigCentral.WebApi.Owin\ConfigCentral.WebApi.Owin.csproj">
+      <Project>{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}</Project>
+      <Name>ConfigCentral.WebApi.Owin</Name>
     </ProjectReference>
     <ProjectReference Include="..\ConfigCentral.WebApi\ConfigCentral.WebApi.csproj">
       <Project>{20A7B2FF-C94B-471D-B3C9-E12143AC2841}</Project>

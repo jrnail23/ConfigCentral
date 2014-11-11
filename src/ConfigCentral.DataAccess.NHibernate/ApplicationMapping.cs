@@ -2,7 +2,7 @@ using ConfigCentral.DomainModel;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.DataAccess.NHibernate
 {
     /// <summary>
     ///     TODO: hook up surrogate key, etc.

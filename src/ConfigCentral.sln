@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral.WebApi.TopShe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral.Infrastructure", "ConfigCentral.Infrastructure\ConfigCentral.Infrastructure.csproj", "{696400EB-E050-4DE9-90BA-D708FD51464F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral.DataAccess.NHibernate", "ConfigCentral.DataAccess.NHibernate\ConfigCentral.DataAccess.NHibernate.csproj", "{87414B89-5C15-4D43-94B3-D97257C05CFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral.WebApi.Owin", "ConfigCentral.WebApi.Owin\ConfigCentral.WebApi.Owin.csproj", "{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,14 @@ Global
 		{696400EB-E050-4DE9-90BA-D708FD51464F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{696400EB-E050-4DE9-90BA-D708FD51464F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{696400EB-E050-4DE9-90BA-D708FD51464F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87414B89-5C15-4D43-94B3-D97257C05CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87414B89-5C15-4D43-94B3-D97257C05CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87414B89-5C15-4D43-94B3-D97257C05CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87414B89-5C15-4D43-94B3-D97257C05CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

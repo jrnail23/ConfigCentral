@@ -1,4 +1,5 @@
 using Autofac;
+using ConfigCentral.DataAccess.NHibernate;
 
 namespace ConfigCentral.WebApi
 {
@@ -10,7 +11,7 @@ namespace ConfigCentral.WebApi
 
             builder.RegisterModule(new NHibernateModule());
             builder.RegisterModule(new WebApiModule(webApiConfiguration));
-            
+
             return builder.Build();
         }
     }

@@ -1,4 +1,4 @@
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.DataAccess.NHibernate
 {
     public static class SqlCeNativeErrors
     {

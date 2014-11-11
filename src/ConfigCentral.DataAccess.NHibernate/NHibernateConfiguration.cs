@@ -7,7 +7,7 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.DataAccess.NHibernate
 {
     public class NHibernateConfiguration
     {

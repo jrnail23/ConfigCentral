@@ -82,6 +82,7 @@ namespace ConfigCentral.WebApi.Resources.Applications
                 return ResponseMessage(msg);
             }
 
+            // TODO: use Hyprlinkr or something like it for strongly-typed routes
             return Created(new Uri("/applications/" + application.Name, UriKind.Relative),
                 new
                 {});

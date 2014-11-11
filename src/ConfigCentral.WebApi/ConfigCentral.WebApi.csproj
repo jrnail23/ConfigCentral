@@ -37,45 +37,20 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac.Integration.Owin">
-      <HintPath>..\packages\Autofac.Owin.3.1.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Integration.WebApi">
+    <Reference Include="Autofac.Integration.WebApi, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Integration.WebApi.Owin">
-      <HintPath>..\packages\Autofac.WebApi2.Owin.3.2.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin">
-      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Hosting">
-      <HintPath>..\packages\Microsoft.Owin.Hosting.3.0.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Owin">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -85,18 +60,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.Owin">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.2\lib\net45\System.Web.Http.Owin.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositionRoot.cs" />
-    <Compile Include="NHibernateModule.cs" />
     <Compile Include="Resources\Applications\ApplicationsController.cs" />
     <Compile Include="Resources\Applications\ApplicationState.cs" />
     <Compile Include="Resources\HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OwinPipeline.cs" />
     <Compile Include="WebApiConfiguration.cs" />
     <Compile Include="WebApiModule.cs" />
   </ItemGroup>
@@ -108,6 +78,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\ConfigCentral.DataAccess.NHibernate\ConfigCentral.DataAccess.NHibernate.csproj">
+      <Project>{87414B89-5C15-4D43-94B3-D97257C05CFF}</Project>
+      <Name>ConfigCentral.DataAccess.NHibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConfigCentral.DomainModel\ConfigCentral.DomainModel.csproj">
       <Project>{1E217317-B098-4FA6-BB1E-945CB3D39301}</Project>
       <Name>ConfigCentral.DomainModel</Name>
@@ -123,13 +97,6 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
-    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
-    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
-    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

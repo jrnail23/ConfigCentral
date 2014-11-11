@@ -1,7 +1,7 @@
 using Autofac;
 using Owin;
 
-namespace ConfigCentral.WebApi
+namespace ConfigCentral.WebApi.Owin
 {
     public class OwinPipeline
     {
@@ -18,7 +18,7 @@ namespace ConfigCentral.WebApi
         {
             application.UseAutofacMiddleware(_rootLifetimeScope);
             _webApiConfiguration.Register(httpConfig => application.UseAutofacWebApi(httpConfig)
-                .UseWebApi(httpConfig));
+                .UseWebApi(configuration: httpConfig));
         }
     }
 }

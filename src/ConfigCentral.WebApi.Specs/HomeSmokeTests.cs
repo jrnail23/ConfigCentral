@@ -1,21 +1,19 @@
 using System.Net;
 using FluentAssertions;
-using Microsoft.Owin.Testing;
 using NUnit.Framework;
 
 namespace ConfigCentral.WebApi.Specs
 {
-    public class HomeSmokeTests
+    public class HomeSmokeTests : ApiAcceptanceTestBase
     {
         [Test]
         public void ShouldReturnHttp200Ok()
         {
-            using (var server = TestServer.Create<OwinPipeline>())
-            {
-                var response = server.HttpClient.GetAsync("/").Result;
+            var response = Server.HttpClient.GetAsync("/")
+                .Result;
 
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
-            }
+            response.StatusCode.Should()
+                .Be(HttpStatusCode.OK);
         }
     }
 }

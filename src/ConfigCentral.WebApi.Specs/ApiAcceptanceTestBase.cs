@@ -2,7 +2,9 @@ using System;
 using System.IO;
 using Autofac;
 using Autofac.Integration.WebApi;
+using ConfigCentral.DataAccess.NHibernate;
 using ConfigCentral.Infrastructure;
+using ConfigCentral.WebApi.Owin;
 using Microsoft.Owin.Testing;
 using NUnit.Framework;
 

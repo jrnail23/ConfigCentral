@@ -1,4 +1,5 @@
 using System;
+using ConfigCentral.WebApi.Owin;
 using Microsoft.Owin.Hosting;
 
 namespace ConfigCentral.WebApi.TopShelfHost

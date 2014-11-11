@@ -1,10 +1,11 @@
 using System;
 using System.Data.SqlServerCe;
 using ConfigCentral.DomainModel;
+using ConfigCentral.Infrastructure;
 using NHibernate;
 using NHibernate.Exceptions;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.DataAccess.NHibernate
 {
     public class NHibernateUnitOfWork : IUnitOfWork
     {
