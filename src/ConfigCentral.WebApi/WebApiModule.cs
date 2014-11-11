@@ -15,10 +15,12 @@ namespace ConfigCentral.WebApi
 
         protected override void Load(ContainerBuilder builder)
         {
-            _webApiConfiguration.Register(httpConfig =>
+            builder.RegisterApiControllers(typeof (HomeController).Assembly);
+
+            _webApiConfiguration.Register(configuration =>
             {
-                builder.RegisterApiControllers(typeof (HomeController).Assembly);
-                builder.RegisterWebApiFilterProvider(httpConfig);
+                builder.RegisterWebApiFilterProvider(configuration);
+                builder.RegisterHttpRequestMessage(configuration);
             });
         }
     }

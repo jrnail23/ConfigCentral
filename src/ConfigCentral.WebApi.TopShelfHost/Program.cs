@@ -1,4 +1,5 @@
-﻿using Topshelf;
+﻿using Autofac.Integration.WebApi;
+using Topshelf;
 
 namespace ConfigCentral.WebApi.TopShelfHost
 {
@@ -10,6 +11,8 @@ namespace ConfigCentral.WebApi.TopShelfHost
             {
                 var webApiConfiguration = new WebApiConfiguration();
                 var rootContainer = new CompositionRoot().Compose(webApiConfiguration);
+                webApiConfiguration.Register(config => new AutofacWebApiDependencyResolver(rootContainer));
+
                 host.Service<ConfigCentralApplication>(
                     service => service.ConstructUsing(() => new ConfigCentralApplication())
                         .WhenStarted(svc => svc.Start(new OwinPipeline(rootContainer, webApiConfiguration)))

@@ -19,7 +19,7 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
         public ApplicationFixture ApplicationFixture { get; set; }
 
         [Test]
-        public void ApplicationHasAlreadyBeenAdded()
+        public void ApplicationHasAlreadyBeenRegistered()
         {
             this.Given(_ => _.ApplicationFixture.MyApplicationHasAlreadyBeenRegistered("MyApplication"))
                 .When(
@@ -33,7 +33,7 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
                             new Uri("/applications/MyApplication", UriKind.Relative)))
                 .And(_ => _.ApplicationFixture.TheResponseContentShouldBe(new
                 {
-                    ErrorDescription = string.Format("An application named '{0}' already exists.", "MyApplication")
+                    ErrorDescription = "object already exists"
                 }))
                 .BDDfy();
         }

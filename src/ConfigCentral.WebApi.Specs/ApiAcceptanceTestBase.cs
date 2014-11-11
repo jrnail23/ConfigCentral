@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Autofac;
+using Autofac.Integration.WebApi;
 using ConfigCentral.Infrastructure;
 using Microsoft.Owin.Testing;
 using NUnit.Framework;
@@ -17,6 +18,8 @@ namespace ConfigCentral.WebApi.Specs
         {
             var webApiConfig = new WebApiConfiguration();
             RootContainer = new CompositionRoot().Compose(webApiConfig);
+            webApiConfig.Register(
+                config => config.DependencyResolver = new AutofacWebApiDependencyResolver(RootContainer));
 
             Server =
                 TestServer.Create(app => new OwinPipeline(RootContainer, webApiConfig).Configuration(app));

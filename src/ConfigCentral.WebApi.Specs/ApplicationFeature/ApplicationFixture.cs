@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Autofac;
 using ConfigCentral.DomainModel;
+using ConfigCentral.Infrastructure;
 using FluentAssertions;
 using NHibernate;
 
@@ -25,22 +26,21 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
         public void MyApplicationIsNotYetRegistered(string applicationName)
         {
             using (var scope = _rootContainerScope.BeginLifetimeScope("AutofacWebRequest"))
+            using (var uow = scope.Resolve<NHibernateUnitOfWork>())
             {
-                var session = scope.Resolve<ISession>();
-                using (var tx = session.BeginTransaction())
-                {
-                    session.Delete("from Application");
-                    tx.Commit();
-                }
+                uow.Session.Delete("from Application");
+                uow.Commit();
             }
         }
 
         public void MyApplicationHasAlreadyBeenRegistered(string applicationName)
         {
             using (var scope = _rootContainerScope.BeginLifetimeScope("AutofacWebRequest"))
+            using (var uow = scope.Resolve<IUnitOfWork>())
             {
                 var repository = scope.Resolve<IApplicationRepository>();
                 repository.Add(new Application(Guid.NewGuid(), applicationName));
+                uow.Commit();
             }
         }
 

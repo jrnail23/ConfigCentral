@@ -4,16 +4,19 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using ConfigCentral.DomainModel;
+using ConfigCentral.Infrastructure;
 
 namespace ConfigCentral.WebApi.Resources.Applications
 {
     public class ApplicationsController : ApiController
     {
         private readonly IApplicationRepository _appsStore;
+        private readonly Func<IUnitOfWork> _uowFactory;
 
-        public ApplicationsController(IApplicationRepository appsStore)
+        public ApplicationsController(IApplicationRepository appsStore, Func<IUnitOfWork> uowFactory)
         {
             _appsStore = appsStore;
+            _uowFactory = uowFactory;
         }
 
         [Route("applications/{name}")]
@@ -21,8 +24,11 @@ namespace ConfigCentral.WebApi.Resources.Applications
         {
             try
             {
-                var model = _appsStore.FindByName(name);
-                return Ok(model);
+                using (_uowFactory())
+                {
+                    var model = _appsStore.FindByName(name);
+                    return Ok(model);
+                }
             }
             catch (ObjectNotFoundException)
             {
@@ -35,8 +41,11 @@ namespace ConfigCentral.WebApi.Resources.Applications
         {
             try
             {
-                var model = _appsStore.All();
-                return Ok(model);
+                using (_uowFactory())
+                {
+                    var model = _appsStore.All();
+                    return Ok(model);
+                }
             }
             catch (ObjectNotFoundException)
             {
@@ -51,7 +60,11 @@ namespace ConfigCentral.WebApi.Resources.Applications
 
             try
             {
-                _appsStore.Add(appEntity);
+                using (var uow = _uowFactory())
+                {
+                    _appsStore.Add(appEntity);
+                    uow.Commit();
+                }
             }
             catch (DuplicateObjectException e)
             {
@@ -70,7 +83,8 @@ namespace ConfigCentral.WebApi.Resources.Applications
             }
 
             return Created(new Uri("/applications/" + application.Name, UriKind.Relative),
-                new { });
+                new
+                {});
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlServerCe;
+﻿using System.Collections.Generic;
 using ConfigCentral.DomainModel;
 using NHibernate;
-using NHibernate.Exceptions;
 using ObjectNotFoundException = ConfigCentral.DomainModel.ObjectNotFoundException;
 
 namespace ConfigCentral.Infrastructure
@@ -36,32 +33,7 @@ namespace ConfigCentral.Infrastructure
 
         public void Add(Application application)
         {
-            // TODO: introduce unit of work
-            using (var tx = _session.BeginTransaction())
-            {
-                try
-                {
-                    _session.Save(application);
-                    tx.Commit();
-                }
-                catch (GenericADOException e)
-                {
-                    tx.Rollback();
-                    var sqlCeException = e.InnerException as SqlCeException;
-
-                    if (sqlCeException != null && sqlCeException.NativeError == SqlCeNativeErrors.UniqueIndexViolation)
-                    {
-                        throw new DuplicateObjectException(string.Format("An application named '{0}' already exists.",
-                            application.Name));
-                    }
-                    throw;
-                }
-                catch (Exception)
-                {
-                    tx.Rollback();
-                    throw;
-                }
-            }
+            _session.Save(application);
         }
     }
 }
