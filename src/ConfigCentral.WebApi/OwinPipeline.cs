@@ -17,7 +17,8 @@ namespace ConfigCentral.WebApi
         public void Configuration(IAppBuilder application)
         {
             application.UseAutofacMiddleware(_rootLifetimeScope);
-            _webApiConfiguration.RegisterWith(application);
+            _webApiConfiguration.Register(httpConfig => application.UseAutofacWebApi(httpConfig)
+                .UseWebApi(httpConfig));
         }
     }
 }

@@ -1,10 +1,5 @@
 using System;
 using System.Web.Http;
-using System.Web.Http.Filters;
-using Autofac;
-using Autofac.Integration.WebApi;
-using ConfigCentral.WebApi.Resources;
-using Owin;
 
 namespace ConfigCentral.WebApi
 {
@@ -24,29 +19,9 @@ namespace ConfigCentral.WebApi
             httpConfiguration.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
         }
 
-        public IAppBuilder RegisterWith(IAppBuilder app)
+        public void Register(Action<HttpConfiguration> configure)
         {
-            return app.UseAutofacWebApi(_httpConfig)
-                .UseWebApi(_httpConfig);
-        }
-
-        public void RegisterWebApiComponents(ContainerBuilder builder)
-        {
-            builder.RegisterApiControllers(typeof (HomeController).Assembly);
-            RegisterWebApiFilterProvider(builder);
-        }
-
-        private void RegisterWebApiFilterProvider(ContainerBuilder builder)
-        {
-            if (builder == null)
-                throw new ArgumentNullException("builder");
-
-            _httpConfig.Services.RemoveAll(typeof (IFilterProvider),
-                provider => provider is ActionDescriptorFilterProvider);
-
-            builder.Register(c => new AutofacWebApiFilterProvider(c.Resolve<ILifetimeScope>()))
-                .As<IFilterProvider>()
-                .SingleInstance();
+            configure(_httpConfig);
         }
     }
 }

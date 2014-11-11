@@ -1,4 +1,6 @@
 using Autofac;
+using Autofac.Integration.WebApi;
+using ConfigCentral.WebApi.Resources;
 
 namespace ConfigCentral.WebApi
 {
@@ -13,7 +15,11 @@ namespace ConfigCentral.WebApi
 
         protected override void Load(ContainerBuilder builder)
         {
-            _webApiConfiguration.RegisterWebApiComponents(builder);
+            _webApiConfiguration.Register(httpConfig =>
+            {
+                builder.RegisterApiControllers(typeof (HomeController).Assembly);
+                builder.RegisterWebApiFilterProvider(httpConfig);
+            });
         }
     }
 }
