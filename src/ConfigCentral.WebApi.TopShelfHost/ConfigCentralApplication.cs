@@ -1,15 +1,15 @@
 using System;
 using Microsoft.Owin.Hosting;
 
-namespace ConfigCentral.WebApi
+namespace ConfigCentral.WebApi.TopShelfHost
 {
     public class ConfigCentralApplication
     {
         private IDisposable _webApplication;
 
-        public void Start()
+        public void Start(OwinPipeline owinPipeline)
         {
-            _webApplication = WebApp.Start<WebPipeline>("http://localhost:5001");
+            _webApplication = WebApp.Start("http://localhost:5001", owinPipeline.Configuration);
         }
 
         public void Stop()

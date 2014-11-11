@@ -5,14 +5,14 @@ using NHibernate.Mapping.ByCode.Conformist;
 namespace ConfigCentral.Infrastructure
 {
     /// <summary>
-    ///     TODO: hook up version, insertDate, surrogate key, etc.
+    ///     TODO: hook up surrogate key, etc.
     /// </summary>
     public class ApplicationMapping : ClassMapping<Application>
     {
         public ApplicationMapping()
         {
             Table("Application");
-
+            //NaturalId(a=>a.);
             Id(a => a.Id,
                 m =>
                 {

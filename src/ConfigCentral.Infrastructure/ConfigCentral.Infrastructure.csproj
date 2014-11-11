@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ApplicationMapping.cs" />
     <Compile Include="InMemoryApplicationRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="NHibernateApplicationRepository.cs" />
     <Compile Include="NHibernateConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,7 +10,7 @@ namespace ConfigCentral.WebApi.Specs
         [Test]
         public void ShouldReturnHttp200Ok()
         {
-            using (var server = TestServer.Create<WebPipeline>())
+            using (var server = TestServer.Create<OwinPipeline>())
             {
                 var response = server.HttpClient.GetAsync("/").Result;
 

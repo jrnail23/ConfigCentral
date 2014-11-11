@@ -36,7 +36,7 @@ namespace ConfigCentral.Infrastructure
 
         public void Add(Application application)
         {
-            // TODO: refactor to unit of work
+            // TODO: introduce unit of work
             using (var tx = _session.BeginTransaction())
             {
                 try

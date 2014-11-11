@@ -15,9 +15,11 @@ namespace ConfigCentral.WebApi.Specs
         [SetUp]
         public void SetUpTestServer()
         {
-            RootContainer = new CompositionRoot().Compose();
+            var webApiConfig = new WebApiConfiguration();
+            RootContainer = new CompositionRoot().Compose(webApiConfig);
 
-            Server = TestServer.Create(app => new WebPipeline(RootContainer).Configuration(app));
+            Server =
+                TestServer.Create(app => new OwinPipeline(RootContainer, webApiConfig).Configuration(app));
             SetUpTestSpecificDatabase();
         }
 

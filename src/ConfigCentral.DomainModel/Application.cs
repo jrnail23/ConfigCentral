@@ -23,10 +23,13 @@ namespace ConfigCentral.DomainModel
         {
             get { return _name; }
         }
+
+        // TODO: extract version number into a persistent entity base
         public virtual int Version
         {
             get { return _version; }
         }
+
         public virtual Guid Id
         {
             get { return _id; }

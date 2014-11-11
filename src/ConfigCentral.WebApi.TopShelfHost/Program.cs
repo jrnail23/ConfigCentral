@@ -8,16 +8,19 @@ namespace ConfigCentral.WebApi.TopShelfHost
         {
             var exitCode = HostFactory.Run(host =>
             {
+                var webApiConfiguration = new WebApiConfiguration();
+                var rootContainer = new CompositionRoot().Compose(webApiConfiguration);
                 host.Service<ConfigCentralApplication>(
                     service => service.ConstructUsing(() => new ConfigCentralApplication())
-                        .WhenStarted(svc => svc.Start())
+                        .WhenStarted(svc => svc.Start(new OwinPipeline(rootContainer, webApiConfiguration)))
                         .WhenStopped(svc => svc.Stop()));
-                host.SetDescription("An application to manage configuration info across applications and deployment environments.");
+                host.SetDescription(
+                    "An application to manage configuration info across applications and deployment environments.");
                 host.SetDisplayName("Config Central");
                 host.SetServiceName("ConfigCentral");
                 host.RunAsNetworkService();
             });
-            return (int)exitCode;
+            return (int) exitCode;
         }
     }
 }
