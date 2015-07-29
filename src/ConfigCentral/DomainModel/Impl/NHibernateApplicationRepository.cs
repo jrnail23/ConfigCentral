@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using ConfigCentral.DomainModel;
 using NHibernate;
-using ObjectNotFoundException = ConfigCentral.DomainModel.ObjectNotFoundException;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.DomainModel.Impl
 {
     public class NHibernateApplicationRepository : IApplicationRepository
     {

@@ -1,27 +1,23 @@
+using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using ConfigCentral.WebApi.Resources;
 
 namespace ConfigCentral.WebApi
 {
     public class WebApiModule : Module
     {
-        private readonly WebApiConfiguration _webApiConfiguration;
+        private readonly HttpConfiguration _httpConfiguration;
 
-        public WebApiModule(WebApiConfiguration webApiConfiguration)
+        public WebApiModule(HttpConfiguration httpConfiguration)
         {
-            _webApiConfiguration = webApiConfiguration;
+            _httpConfiguration = httpConfiguration;
         }
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterApiControllers(typeof (HomeController).Assembly);
-
-            _webApiConfiguration.Register(configuration =>
-            {
-                builder.RegisterWebApiFilterProvider(configuration);
-                builder.RegisterHttpRequestMessage(configuration);
-            });
+            builder.RegisterApiControllers(ThisAssembly);
+            //builder.RegisterWebApiFilterProvider(_httpConfiguration);
+            builder.RegisterHttpRequestMessage(_httpConfiguration);
         }
     }
 }

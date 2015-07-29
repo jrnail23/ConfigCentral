@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.Infrastructure.DataAccess
 {
     public interface IUnitOfWork : IDisposable
     {

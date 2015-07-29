@@ -5,7 +5,7 @@ using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web.Http;
 using ConfigCentral.DomainModel;
-using ConfigCentral.Infrastructure;
+using ConfigCentral.Infrastructure.DataAccess;
 using ConfigCentral.Mediator;
 using ConfigCentral.UseCases;
 
@@ -18,8 +18,8 @@ namespace ConfigCentral.WebApi.Resources
         private readonly Func<IUnitOfWork> _uowFactory;
 
         public ApplicationsController(IApplicationRepository appsStore,
-            Func<IUnitOfWork> uowFactory,
-            IApplicationBus bus)
+                                      Func<IUnitOfWork> uowFactory,
+                                      IApplicationBus bus)
         {
             _appsStore = appsStore;
             _uowFactory = uowFactory;
@@ -64,7 +64,7 @@ namespace ConfigCentral.WebApi.Resources
         [Route("applications")]
         public IHttpActionResult Post([FromBody] ApplicationState application)
         {
-            var appEntity = new DomainModel.Application(Guid.NewGuid(), application.Name);
+            var appEntity = new Application(application.Name);
 
             try
             {

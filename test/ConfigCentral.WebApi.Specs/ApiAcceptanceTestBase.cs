@@ -4,6 +4,7 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using ConfigCentral.Infrastructure;
+using ConfigCentral.Infrastructure.DataAccess;
 using Microsoft.Owin.Testing;
 using NUnit.Framework;
 
@@ -17,13 +18,12 @@ namespace ConfigCentral.WebApi.Specs
         [SetUp]
         public void SetUpTestServer()
         {
-            var webApiConfig = new WebApiConfiguration(new HttpConfiguration());
-            RootContainer = new CompositionRoot().Compose(webApiConfig);
-            webApiConfig.Register(
-                config => config.DependencyResolver = new AutofacWebApiDependencyResolver(RootContainer));
+            var httpConfig = new HttpConfiguration();
+            RootContainer = new CompositionRoot().Compose(httpConfig);
+            httpConfig.DependencyResolver = new AutofacWebApiDependencyResolver(RootContainer);
 
             Server =
-                TestServer.Create(app => new OwinPipeline(RootContainer, webApiConfig).Configuration(app));
+                TestServer.Create(app => new Startup(RootContainer, httpConfig).Configuration(app));
             SetUpTestSpecificDatabase();
         }
 
@@ -42,8 +42,7 @@ namespace ConfigCentral.WebApi.Specs
 
             var connectionString = $"Data Source={testSpecificDbFilePath};";
             var builder = new ContainerBuilder();
-            builder.RegisterInstance(new NHibernateConfiguration(connectionString))
-                .SingleInstance();
+            builder.RegisterInstance(new NHibernateConfiguration(connectionString)).SingleInstance();
             builder.Update(RootContainer);
         }
     }

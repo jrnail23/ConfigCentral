@@ -1,6 +1,6 @@
 using NHibernate;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.Infrastructure.DataAccess
 {
     public class NHibernateUnitOfWork : IUnitOfWork
     {

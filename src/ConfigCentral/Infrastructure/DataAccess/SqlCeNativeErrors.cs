@@ -1,4 +1,4 @@
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.Infrastructure.DataAccess
 {
     public static class SqlCeNativeErrors
     {

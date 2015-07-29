@@ -1,10 +1,11 @@
 using System.Configuration;
 using Autofac;
 using ConfigCentral.DomainModel;
+using ConfigCentral.DomainModel.Impl;
 using NHibernate;
 using Configuration = NHibernate.Cfg.Configuration;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.Infrastructure.DataAccess
 {
     public class NHibernateModule : Module
     {

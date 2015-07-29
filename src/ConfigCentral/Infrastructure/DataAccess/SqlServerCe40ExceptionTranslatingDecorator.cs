@@ -3,7 +3,7 @@ using ConfigCentral.DomainModel;
 using NHibernate;
 using NHibernate.Exceptions;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.Infrastructure.DataAccess
 {
     public class SqlServerCe40ExceptionTranslatingDecorator : NHibernateUnitOfWork
     {

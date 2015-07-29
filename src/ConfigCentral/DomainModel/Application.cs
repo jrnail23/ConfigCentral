@@ -11,13 +11,13 @@ namespace ConfigCentral.DomainModel
         {
         }
 
-        public Application(Guid id, string name)
+        public Application(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
             if (name == string.Empty)
                 throw new ArgumentException("value must not be empty", nameof(name));
 
-            Id = id;
+            //Id = id;
             _name = name;
         }
 

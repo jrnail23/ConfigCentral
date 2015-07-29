@@ -2,6 +2,7 @@
 
 namespace ConfigCentral.WebApi.Resources
 {
+    [RoutePrefix("")]
     public class HomeController : ApiController
     {
         [Route("")]

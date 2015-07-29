@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ConfigCentral.DomainModel;
 
-namespace ConfigCentral.Infrastructure
+namespace ConfigCentral.DomainModel.Impl
 {
     public class InMemoryApplicationRepository : IApplicationRepository
     {
