@@ -1,7 +1,7 @@
 using Autofac;
-using ConfigCentral.Application;
-using ConfigCentral.ApplicationBus;
-using ConfigCentral.DataAccess.NHibernate;
+using ConfigCentral.Infrastructure;
+using ConfigCentral.Mediator;
+using ConfigCentral.UseCases;
 
 namespace ConfigCentral.WebApi
 {

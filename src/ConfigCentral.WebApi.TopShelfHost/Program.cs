@@ -1,5 +1,5 @@
-﻿using Autofac.Integration.WebApi;
-using ConfigCentral.WebApi.Owin;
+﻿using System.Web.Http;
+using Autofac.Integration.WebApi;
 using Topshelf;
 
 namespace ConfigCentral.WebApi.TopShelfHost
@@ -10,9 +10,12 @@ namespace ConfigCentral.WebApi.TopShelfHost
         {
             var exitCode = HostFactory.Run(host =>
             {
-                var webApiConfiguration = new WebApiConfiguration();
+                var webApiConfiguration = new WebApiConfiguration(new HttpConfiguration());
                 var rootContainer = new CompositionRoot().Compose(webApiConfiguration);
-                webApiConfiguration.Register(config => new AutofacWebApiDependencyResolver(rootContainer));
+                webApiConfiguration.Register(
+                    config =>
+                        config.DependencyResolver =
+                            new AutofacWebApiDependencyResolver(rootContainer));
 
                 host.Service<ConfigCentralApplication>(
                     service => service.ConstructUsing(() => new ConfigCentralApplication())

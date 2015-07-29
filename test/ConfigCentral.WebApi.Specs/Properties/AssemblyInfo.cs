@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ConfigCentral.WebApi.TopShelfHost")]
+[assembly: AssemblyTitle("ConfigCentral.WebApi.Specs")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ConfigCentral.WebApi.TopShelfHost")]
+[assembly: AssemblyProduct("ConfigCentral.WebApi.Specs")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2e08b4b8-0b66-4c42-a015-f54795449512")]
+[assembly: Guid("30555dba-83b5-4f91-ab4a-a44e19160987")]
 
 // Version information for an assembly consists of the following four values:
 //
