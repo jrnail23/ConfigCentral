@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral.DataAccess.NH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral.WebApi.Owin", "ConfigCentral.WebApi.Owin\ConfigCentral.WebApi.Owin.csproj", "{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral.ApplicationBus", "ConfigCentral.ApplicationBus\ConfigCentral.ApplicationBus.csproj", "{F5366710-1C3C-4975-B8E4-7A70D3D90C47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigCentral.Application", "ConfigCentral.Application\ConfigCentral.Application.csproj", "{BD244699-7C34-4A85-9E9E-B532E2CB49F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +63,14 @@ Global
 		{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E1374BF-D559-4C01-B4B9-EF25CC64EF3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5366710-1C3C-4975-B8E4-7A70D3D90C47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5366710-1C3C-4975-B8E4-7A70D3D90C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5366710-1C3C-4975-B8E4-7A70D3D90C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5366710-1C3C-4975-B8E4-7A70D3D90C47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD244699-7C34-4A85-9E9E-B532E2CB49F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD244699-7C34-4A85-9E9E-B532E2CB49F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD244699-7C34-4A85-9E9E-B532E2CB49F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD244699-7C34-4A85-9E9E-B532E2CB49F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

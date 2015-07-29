@@ -7,7 +7,6 @@ using ConfigCentral.DataAccess.NHibernate;
 using ConfigCentral.DomainModel;
 using ConfigCentral.Infrastructure;
 using FluentAssertions;
-using NHibernate;
 
 namespace ConfigCentral.WebApi.Specs.ApplicationFeature
 {
@@ -26,7 +25,7 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
 
         public void MyApplicationIsNotYetRegistered(string applicationName)
         {
-            using (var scope = _rootContainerScope.BeginLifetimeScope("AutofacWebRequest"))
+            using (var scope = _rootContainerScope.BeginLifetimeScope())
             using (var uow = scope.Resolve<NHibernateUnitOfWork>())
             {
                 uow.Session.Delete("from Application");
@@ -36,11 +35,11 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
 
         public void MyApplicationHasAlreadyBeenRegistered(string applicationName)
         {
-            using (var scope = _rootContainerScope.BeginLifetimeScope("AutofacWebRequest"))
+            using (var scope = _rootContainerScope.BeginLifetimeScope())
             using (var uow = scope.Resolve<IUnitOfWork>())
             {
                 var repository = scope.Resolve<IApplicationRepository>();
-                repository.Add(new Application(Guid.NewGuid(), applicationName));
+                repository.Add(new DomainModel.Application(Guid.NewGuid(), applicationName));
                 uow.Commit();
             }
         }
@@ -62,10 +61,31 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
                 .Result;
         }
 
+        public void TheResponseShouldNotBeAnError()
+        {
+            var statusCode = Response.StatusCode;
+
+            Response.IsSuccessStatusCode.Should()
+                .BeTrue(
+                    "because an error response was not expected.  However, the actual response was HTTP {0}({1}), with content '{2}'",
+                    (int) statusCode,
+                    statusCode,
+                    Response.Content.ReadAsStringAsync()
+                        .Result);
+        }
+
         public void TheResponseStatusCodeShouldBe(HttpStatusCode statusCode)
         {
+            var actual = Response.StatusCode;
             Response.StatusCode.Should()
-                .Be(statusCode);
+                .Be(statusCode,
+                    "because the specified expected status code was HTTP {0}({1}).  However, the actual response was HTTP {2}({3}), with content:'{4}'",
+                    (int) statusCode,
+                    statusCode,
+                    (int) actual,
+                    actual,
+                    Response.Content.ReadAsStringAsync()
+                        .Result);
         }
 
         public void TheResponseContentShouldBe<T>(T content)

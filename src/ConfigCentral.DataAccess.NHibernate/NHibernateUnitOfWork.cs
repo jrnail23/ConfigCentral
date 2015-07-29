@@ -1,4 +1,3 @@
-using System;
 using System.Data.SqlServerCe;
 using ConfigCentral.DomainModel;
 using ConfigCentral.Infrastructure;
@@ -9,12 +8,8 @@ namespace ConfigCentral.DataAccess.NHibernate
 {
     public class NHibernateUnitOfWork : IUnitOfWork
     {
-        private readonly ISession _session;
-
-        protected NHibernateUnitOfWork()
-        {
-            
-        }
+        private ISession _session;
+        protected NHibernateUnitOfWork() {}
 
         public NHibernateUnitOfWork(ISession session)
         {
@@ -47,14 +42,15 @@ namespace ConfigCentral.DataAccess.NHibernate
 
         public virtual void Dispose()
         {
-            if (Session.Transaction.IsActive 
-                && !Session.Transaction.WasCommitted 
-                && !Session.Transaction.WasRolledBack)
+            if (Session == null) return;
+            if (Session.Transaction.IsActive && !Session.Transaction.WasCommitted &&
+                !Session.Transaction.WasRolledBack)
             {
                 Session.Transaction.Rollback();
             }
-
+            Session.Close();
             Session.Dispose();
+            _session = null;
         }
     }
 
@@ -65,6 +61,11 @@ namespace ConfigCentral.DataAccess.NHibernate
         public SqlServerCe40ExceptionTranslatingDecorator(NHibernateUnitOfWork inner)
         {
             _inner = inner;
+        }
+
+        public override ISession Session
+        {
+            get { return _inner.Session; }
         }
 
         public override void Dispose()
@@ -80,20 +81,14 @@ namespace ConfigCentral.DataAccess.NHibernate
             }
             catch (GenericADOException e)
             {
-                Console.WriteLine(e);
+                // TODO introduce logging
                 var sqlCeException = e.InnerException as SqlCeException;
 
-                if (sqlCeException != null && sqlCeException.NativeError == SqlCeNativeErrors.UniqueIndexViolation)
-                {
+                if (sqlCeException != null &&
+                    sqlCeException.NativeError == SqlCeNativeErrors.UniqueIndexViolation)
                     throw new DuplicateObjectException("object already exists");
-                }
                 throw;
             }
-        }
-
-        public override ISession Session
-        {
-            get { return _inner.Session; }
         }
 
         public override void Rollback()

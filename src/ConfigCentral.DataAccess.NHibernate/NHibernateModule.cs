@@ -1,3 +1,4 @@
+using System;
 using System.Configuration;
 using Autofac;
 using ConfigCentral.DomainModel;
@@ -13,7 +14,7 @@ namespace ConfigCentral.DataAccess.NHibernate
         {
             builder.RegisterType<NHibernateApplicationRepository>()
                 .As<IApplicationRepository>();
-
+            
             builder.Register(
                 c =>
                     new NHibernateConfiguration(ConfigurationManager.ConnectionStrings["ConfigCentral"].ConnectionString))
@@ -32,23 +33,23 @@ namespace ConfigCentral.DataAccess.NHibernate
                 .OpenSession())
                 .Named<ISession>("default")
                 .OnActivated(args => { args.Instance.FlushMode = FlushMode.Commit; })
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder.Register(c => new NHibernateUnitOfWork(c.ResolveNamed<ISession>("default")))
                 .Named<NHibernateUnitOfWork>("default")
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder.RegisterDecorator<NHibernateUnitOfWork>(
                 (c, inner) => new SqlServerCe40ExceptionTranslatingDecorator(inner),
                 fromKey: "default")
                 .As<NHibernateUnitOfWork>()
                 .As<IUnitOfWork>()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder.Register(c => c.Resolve<NHibernateUnitOfWork>().Session)
                 .As<ISession>()
                 .ExternallyOwned()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
         }
     }
 }

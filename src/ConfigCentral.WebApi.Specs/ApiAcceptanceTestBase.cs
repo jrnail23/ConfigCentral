@@ -3,10 +3,10 @@ using System.IO;
 using Autofac;
 using Autofac.Integration.WebApi;
 using ConfigCentral.DataAccess.NHibernate;
-using ConfigCentral.Infrastructure;
 using ConfigCentral.WebApi.Owin;
 using Microsoft.Owin.Testing;
 using NUnit.Framework;
+using Whitebox.Containers.Autofac;
 
 namespace ConfigCentral.WebApi.Specs
 {
@@ -45,7 +45,6 @@ namespace ConfigCentral.WebApi.Specs
             var builder = new ContainerBuilder();
             builder.RegisterInstance(new NHibernateConfiguration(connectionString))
                 .SingleInstance();
-
             builder.Update(RootContainer);
         }
     }

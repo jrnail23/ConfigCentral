@@ -2,7 +2,10 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Threading.Tasks;
 using System.Web.Http;
+using ConfigCentral.Application;
+using ConfigCentral.ApplicationBus;
 using ConfigCentral.DomainModel;
 using ConfigCentral.Infrastructure;
 
@@ -11,24 +14,29 @@ namespace ConfigCentral.WebApi.Resources.Applications
     public class ApplicationsController : ApiController
     {
         private readonly IApplicationRepository _appsStore;
+        private readonly IApplicationBus _bus;
         private readonly Func<IUnitOfWork> _uowFactory;
 
-        public ApplicationsController(IApplicationRepository appsStore, Func<IUnitOfWork> uowFactory)
+        public ApplicationsController(IApplicationRepository appsStore,
+            Func<IUnitOfWork> uowFactory,
+            IApplicationBus bus)
         {
             _appsStore = appsStore;
             _uowFactory = uowFactory;
+            _bus = bus;
         }
 
         [Route("applications/{name}")]
-        public IHttpActionResult Get([FromUri] string name)
+        public async Task<IHttpActionResult> Get([FromUri] string name)
         {
             try
             {
-                using (_uowFactory())
-                {
-                    var model = _appsStore.FindByName(name);
-                    return Ok(model);
-                }
+                var result =
+                    await
+                        _bus.RequestAsync<FindApplicationByName, ApplicationState>(
+                            new FindApplicationByName {Name = name});
+
+                return Ok(result.Data);
             }
             catch (ObjectNotFoundException)
             {
@@ -56,7 +64,7 @@ namespace ConfigCentral.WebApi.Resources.Applications
         [Route("applications")]
         public IHttpActionResult Post([FromBody] ApplicationState application)
         {
-            var appEntity = new Application(Guid.NewGuid(), application.Name);
+            var appEntity = new DomainModel.Application(Guid.NewGuid(), application.Name);
 
             try
             {
@@ -69,10 +77,7 @@ namespace ConfigCentral.WebApi.Resources.Applications
             catch (DuplicateObjectException e)
             {
                 // TODO: extract response mapping into an exception filter or something
-                var entity = new
-                {
-                    ErrorDescription = e.Message
-                };
+                var entity = new {ErrorDescription = e.Message};
                 var msg = new HttpResponseMessage(HttpStatusCode.Conflict)
                 {
                     Content = new ObjectContent<object>(entity, new JsonMediaTypeFormatter())
@@ -83,9 +88,7 @@ namespace ConfigCentral.WebApi.Resources.Applications
             }
 
             // TODO: use Hyprlinkr or something like it for strongly-typed routes
-            return Created(new Uri("/applications/" + application.Name, UriKind.Relative),
-                new
-                {});
+            return Created(new Uri("/applications/" + application.Name, UriKind.Relative), new {});
         }
     }
 }

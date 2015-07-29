@@ -1,6 +1,6 @@
 using System;
 using System.Net;
-using ConfigCentral.WebApi.Resources.Applications;
+using ConfigCentral.Application;
 using NUnit.Framework;
 using TestStack.BDDfy;
 
@@ -31,7 +31,7 @@ namespace ConfigCentral.WebApi.Specs.ApplicationFeature
         {
             this.Given(_ => _.ApplicationFixture.MyApplicationHasAlreadyBeenRegistered("My Great App"))
                 .When(_ => _.ApplicationFixture.IGet(new Uri("/applications/My%20Great%20App", UriKind.Relative)))
-                .Then(_ => _.ApplicationFixture.TheResponseStatusCodeShouldBe(HttpStatusCode.OK))
+                .And(_ => _.ApplicationFixture.TheResponseStatusCodeShouldBe(HttpStatusCode.OK))
                 .And(_ => _.ApplicationFixture.TheResponseContentShouldBe(new
                 {
                     Name = "My Great App"

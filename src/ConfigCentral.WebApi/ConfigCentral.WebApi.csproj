@@ -64,7 +64,6 @@
   <ItemGroup>
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="Resources\Applications\ApplicationsController.cs" />
-    <Compile Include="Resources\Applications\ApplicationState.cs" />
     <Compile Include="Resources\HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiConfiguration.cs" />
@@ -78,6 +77,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\ConfigCentral.ApplicationBus\ConfigCentral.ApplicationBus.csproj">
+      <Project>{F5366710-1C3C-4975-B8E4-7A70D3D90C47}</Project>
+      <Name>ConfigCentral.ApplicationBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigCentral.Application\ConfigCentral.Application.csproj">
+      <Project>{BD244699-7C34-4A85-9E9E-B532E2CB49F9}</Project>
+      <Name>ConfigCentral.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConfigCentral.DataAccess.NHibernate\ConfigCentral.DataAccess.NHibernate.csproj">
       <Project>{87414B89-5C15-4D43-94B3-D97257C05CFF}</Project>
       <Name>ConfigCentral.DataAccess.NHibernate</Name>

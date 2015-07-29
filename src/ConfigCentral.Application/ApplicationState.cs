@@ -1,4 +1,4 @@
-﻿namespace ConfigCentral.WebApi.Resources.Applications
+﻿namespace ConfigCentral.Application
 {
     public class ApplicationState
     {
